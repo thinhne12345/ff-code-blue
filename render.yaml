@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: ff-code-blue
+    runtime: node
+    plan: free
+    region: singapore
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start -- -p $PORT
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 24.18.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ff-code-blue-db
+          property: connectionString
+
+databases:
+  - name: ff-code-blue-db
+    plan: free
+    region: singapore
+    databaseName: ff_code_blue
+    user: ff_code_blue
