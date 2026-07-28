@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vinext dev",
-    "build": "vinext build",
+    "build": "vinext build && node copy-hosting.mjs",
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern build",
     "test": "node --experimental-strip-types --test app/lib/*.test.ts"
